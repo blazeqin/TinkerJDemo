@@ -22,4 +22,9 @@ appVersion就是app.gradle里的versionName
 不需要修改baseinfo。除非发布新的版本包。
 # 6.成功问题
 感觉成功率就是不行，如果还是没能成功，参考官方demo，查看日志解决
+
 https://github.com/TinkerPatch/tinkerpatch-easy-sample
+# 7.影响极光推送获取注册id
+获取id有两种方式，采用监听广播的形式就没有问题了
+
+https://community.jiguang.cn/t/registrationid/15658/2
