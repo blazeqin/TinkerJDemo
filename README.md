@@ -25,6 +25,7 @@ appVersion就是app.gradle里的versionName
 
 https://github.com/TinkerPatch/tinkerpatch-easy-sample
 # 7.影响极光推送获取注册id
-获取id有两种方式，采用监听广播的形式就没有问题了
+获取id有两种方式，采用监听广播的形式就会好一点，但是还是会有问题。
+只能采取一些小措施了，TinkerPatch.with().fetchPatchUpdate(true);这一句延迟执行。
 
 https://community.jiguang.cn/t/registrationid/15658/2
