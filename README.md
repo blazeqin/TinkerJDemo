@@ -13,7 +13,7 @@ https://www.cnblogs.com/huangjialin/p/7693816.html
 //基包文件夹名（打补丁包的时候，需要修改，对照bakpath目录修改）
 def baseInfo = "app-1.0-0802-11-07-35"
 # 2.基准包
-最好是运行安装。。。通过apk安装了N多次都没成功
+选定一个就行
 # 3.appVersion
 appVersion就是app.gradle里的versionName
 # 4.最好是在APP启动等一些关键路径，使用fetchPatchUpdate(true)强制检查更新
