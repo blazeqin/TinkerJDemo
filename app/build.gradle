@@ -1,4 +1,6 @@
+import com.android.build.gradle.api.BaseVariant
 apply plugin: 'com.android.application'
+apply plugin: 'walle'
 apply from: 'tinkerpatch.gradle'
 android {
     compileSdkVersion 28
@@ -7,6 +9,7 @@ android {
             storeFile rootProject.file("keystore/debug.keystore")
             storePassword '123456'
             keyAlias 'debug0'
+            v2SigningEnabled true
             keyPassword 'debug0'
         }
     }
@@ -21,6 +24,7 @@ android {
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -43,4 +47,29 @@ dependencies {
     compileOnly 'com.tinkerpatch.tinker:tinker-android-anno:1.9.8',{changing=true}
     annotationProcessor 'com.tinkerpatch.tinker:tinker-android-anno:1.9.8',{changing=true}
     implementation "com.android.support:multidex:1.0.1"
+
+    implementation 'com.meituan.android.walle:library:1.1.6'
+}
+
+walle {
+    // 指定渠道包的输出路径
+    apkOutputFolder = new File("${project.buildDir}/outputs/channels");
+    // 定制渠道包的APK的文件名称
+    apkFileNameFormat = '${appName}-${packageName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk';
+    // 渠道配置文件configFile与channelFile两者必须存在一个，否则无法生成渠道包。两者都存在时优先执行configFile
+    channelFile = new File("${project.getProjectDir()}/channel")
+}
+
+//String channel = WalleChannelReader.getChannel(this.getApplicationContext());
+
+// 根据不同的applicationId来配置不同的channelFile／configFile
+afterEvaluate {
+    project.android.applicationVariants.all { BaseVariant variant ->
+        variant.assemble.doFirst {
+            if (variant.applicationId.endsWith(".debug")) {
+
+                project.walle.channelFile = new File("${project.getProjectDir()}/channel_debug")
+            }
+        }
+    }
 }

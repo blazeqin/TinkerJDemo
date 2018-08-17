@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.meituan.android.walle.WalleChannelReader;
 import com.tinkerpatch.sdk.TinkerPatch;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +25,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ((Button) findViewById(R.id.button)).setText("成功率也太低了");
+        ((Button) findViewById(R.id.button)).setText(WalleChannelReader.getChannel(getApplicationContext()));
     }
 }

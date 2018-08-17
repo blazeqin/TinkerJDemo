@@ -26,7 +26,7 @@ tinkerpatchSupport {
     protectedApp = false
 
     /** 补丁是否支持新增 Activity (exported必须为false)**/
-    supportComponent = false
+    supportComponent = true
 
     //将每次编译产生的 apk/mapping.txt/R.txt 归档存储的位置
     autoBackupApkPath = "${bakPath}"
